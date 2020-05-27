@@ -1,5 +1,3 @@
-## pip install qrcode[pil]
-## pip install pytz
 import qrcode
 import datetime
 from pytz import timezone
@@ -16,7 +14,7 @@ import impressao
 def getTime():
     dadosHorario = datetime.datetime.now()
     fuso_horario = timezone('America/Sao_Paulo')
-    horarioFuso = dadosHorario.astimezone(fuso_horario).strftime('%d,%m,%Y,%H,%M')
+    horarioFuso = dadosHorario.astimezone(fuso_horario).strftime('%Y%m%d%H%M%S')
     return horarioFuso
 
 def getCode():
@@ -32,9 +30,15 @@ def main():
         box_size=4,
         border=30,
     )
-    codigo = str(getCode()) + ";"
-    cnpj = "010039854672584123654;"
-    qr.add_data(cnpj +codigo+ getTime())
+    cod1 = "232003"
+    cnpj = "01377961000344"
+    cod2 = "59"
+    nota = "000000000"
+    rand = "0656103734702}"
+    data = getTime()
+    valor = "}0.00}}"
+    rand2 = "y6n0+ip9s4YtB6m2Ko28mMl5lrVks+df8bOgZ9b+x1b8lkJ;X6d7+OsezXKencnjN1pFo12r;n;a;9Pf8TrKv58sfEOCUEAYak+ZNILWycAafPCzbuiTQZK7cFuNkQotp8m2cQa3tY4lJ9ARlOAIgjMjJ491sO9tk2g9Q9iqFan1gcKDVlfw4pPxcODean4fInLEir1G0D3fSIM9RltOYilmuwp;SQhIzctA99t4wvEzDcu0QQGiH1sy+uC;3XJDCHwMAuqdDYMBR+v3KhEMJOqJdWUozX63JDB80irlSotR+NvSSbA3c2EvvI84vz8ot2psN4EJx7v;T+obcs7ZZw=="
+    qr.add_data(cod1+cnpj+cod2+nota+rand+data+valor+rand2)
     qr.make(fit=True)
 
     img = qr.make_image(fill_color="black", back_color="white")
